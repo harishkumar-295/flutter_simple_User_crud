@@ -77,8 +77,11 @@ class _AddUserFormState extends State<AddUserForm> {
                       if (_validateName == false && _validateContact == false) {
                         var result = await UserAPI().addUser(
                             _userNameController.text,
-                            _userContactController.text);
-                        Navigator.pop(context, result);
+                            _userContactController.text,
+                            context);
+                        if (result != null) {
+                          Navigator.pop(context, result);
+                        }
                       }
                     },
                     style: TextButton.styleFrom(

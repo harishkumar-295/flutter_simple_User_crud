@@ -58,7 +58,6 @@ class User {
 }
 
 AddUser addwelcomeFromJson(String str) => AddUser.fromJson(json.decode(str));
-
 String addwelcomeToJson(AddUser data) => json.encode(data.toJson());
 
 class AddUser {
