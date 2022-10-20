@@ -51,4 +51,27 @@ class UserAPI {
     }
     return addwelcomeFromJson(respBody);
   }
+
+  Future<AddUser?> deleteUser(int id, BuildContext context) async {
+    var respBody;
+    try {
+      var client = http.Client();
+      var uri = Uri.parse("http://10.0.2.2:5000/user/$id");
+      var response = await client.delete(
+        uri,
+      );
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            respBody = response.body;
+          });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    if (respBody == null) {
+      return null;
+    }
+    return addwelcomeFromJson(respBody);
+  }
 }

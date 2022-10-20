@@ -51,6 +51,7 @@ class _AddUserFormState extends State<AddUserForm> {
               ),
               TextField(
                 controller: _userContactController,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     hintText: 'Enter Contact Number',

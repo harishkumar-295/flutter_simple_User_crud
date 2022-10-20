@@ -67,7 +67,19 @@ class _HomePageState extends State<HomePage> {
                         IconButton(
                             onPressed: () {}, icon: const Icon(Icons.edit)),
                         IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.delete)),
+                            onPressed: () async {
+                              // Implement dialog box here and only after the user clicks ok delete user
+                              var response = await UserAPI()
+                                  .deleteUser(users![index].id, context)
+                                  .then((value) {
+                                if (value != null) {
+                                  if (value.success) {
+                                    getDetails();
+                                  }
+                                }
+                              });
+                            },
+                            icon: const Icon(Icons.delete)),
                       ],
                     ),
                   );
@@ -83,6 +95,9 @@ class _HomePageState extends State<HomePage> {
             if (value != null) {
               // print(value);
               if (value.success) {
+                setState(() {
+                  usersEmpty = false;
+                });
                 getDetails();
               }
             }
